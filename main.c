@@ -7,6 +7,9 @@ La Calculadora debe permitir sumar y restar enteros y binarios, presentar el res
 #include <stdlib.h>
 #include <string.h>
 
+extern int asm_io();
+extern int asm_main();
+
 typedef enum Salida{
     HEX, DEC, BIN
     }Salida;
@@ -26,6 +29,9 @@ void process(char * operacion);
 int main(int argc, char const *argv[])
 {
     char * operacion = (char *)malloc(sizeof(char *));
+
+    asm_main(); //-> Aca invocamos la funcion de assembler, para implementar despues.
+    
     main:
     printf("Este programa soporta operaciones con y entre numeros hexadecimales y decimales\n");
     printf("1- Ingresar operacion \n2- Configuracion\n");
@@ -53,6 +59,8 @@ int main(int argc, char const *argv[])
     default:
         goto main;
     }
+
+    
 
     free(operacion);
     return 0;
