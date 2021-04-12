@@ -11,32 +11,31 @@ La Calculadora debe permitir sumar y restar enteros y binarios, presentar el res
 extern int sumar(int x, int y);
 extern int restar(int x, int y);
 
-typedef enum Salida{
-    HEX, DEC, BIN
-    }Salida;
+typedef enum Salida
+{
+    HEX,
+    DEC,
+    BIN
+} Salida;
 
-typedef enum Operacion{
-    SUMA, RESTA
-    }Operacion;
-
+typedef enum Operacion
+{
+    SUMA,
+    RESTA
+} Operacion;
 
 Salida salida = DEC;
 Operacion op = SUMA;
 unsigned int eleccion;
 int32_t output;
 
-void process(char * operacion);
+void process(char *operacion);
 
 int main(int argc, char const *argv[])
 {
-    char * operacion = (char *)malloc(sizeof(char *));
-    int resultado = 0;
-    resultado = sumar(3,4);
-    printf("El resutaldo de la suma es: %d\n", resultado);
-    resultado = restar(3,4);
-    printf("Resultado de la resta es: %d \n", resultado );
+    char *operacion = (char *)malloc(sizeof(char *));
 
-    main:
+main:
     printf("Este programa soporta operaciones con y entre numeros hexadecimales y decimales\n");
     printf("1- Ingresar operacion \n2- Configuracion\n");
     scanf("%d", &eleccion);
@@ -54,60 +53,66 @@ int main(int argc, char const *argv[])
         printf("Mostrar resultados en:\n 0- Hexadecimal\n 1- Decimal\n 2-Binario\n");
         scanf("%d", &eleccion);
 
-        if (eleccion < 3) {
-            salida = (Salida)eleccion; 
+        if (eleccion < 3)
+        {
+            salida = (Salida)eleccion;
             goto main;
         }
-        else goto configuracion;
+        else
+            goto configuracion;
         break;
     default:
+        printf("Eleccion no reconocida\n");
         goto main;
     }
-
-    
 
     free(operacion);
     return 0;
 }
 
-void process(char * operacion){
+void process(char *operacion)
+{
 
-    const char * delim = "+"; 
+    const char *delim = "+";
+    int resultado = 0;
 
-    if(strchr(operacion, '+') != NULL)
+    if (strchr(operacion, '+') != NULL)
     {
         delim = "+";
         op = SUMA;
     }
-    else if(strchr(operacion, '-') != NULL)
+    else if (strchr(operacion, '-') != NULL)
     {
         delim = "-";
         op = RESTA;
     }
-    else{
-        printf("Operacion no soportada.\n"); 
+    else
+    {
+        printf("Operacion no soportada.\n");
         return;
-    } 
+    }
 
     char *token;
 
-    char * A = strtok(operacion, delim);
-    char * B = strtok(NULL, delim);
+    char *A = strtok(operacion, delim);
+    char *B = strtok(NULL, delim);
 
-    int32_t operandoA = strtol(A,NULL,0);
-    int32_t operandoB = strtol(B,NULL,0);
+    int operandoA = (int)(strtol(A, NULL, 0));
+    int operandoB = (int)(strtol(B, NULL, 0));
 
     switch (op)
     {
     case SUMA:
         printf("SUMA.");
         /* asm code */
-        restar(operandoA, operandoB);
+        resultado = sumar(operandoA, operandoB);
+        printf("El resutaldo de la suma es: %d\n", resultado);
         break;
     case RESTA:
         printf("RESTA.");
         /* asm code */
-        restar(operandoA, operandoB);
+        resultado = restar(operandoA, operandoB);
+        printf("El resutaldo de la suma es: %d\n", resultado);
         break;
     }
 }
