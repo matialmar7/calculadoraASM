@@ -6,9 +6,10 @@ La Calculadora debe permitir sumar y restar enteros y binarios, presentar el res
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "cdecl.h"
 
-extern int asm_io();
-extern int asm_main();
+extern int sumar(int x, int y);
+extern int restar(int x, int y);
 
 typedef enum Salida{
     HEX, DEC, BIN
@@ -29,9 +30,12 @@ void process(char * operacion);
 int main(int argc, char const *argv[])
 {
     char * operacion = (char *)malloc(sizeof(char *));
+    int resultado = 0;
+    resultado = sumar(3,4);
+    printf("El resutaldo de la suma es: %d\n", resultado);
+    resultado = restar(3,4);
+    printf("Resultado de la resta es: %d \n", resultado );
 
-    asm_main(); //-> Aca invocamos la funcion de assembler, para implementar despues.
-    
     main:
     printf("Este programa soporta operaciones con y entre numeros hexadecimales y decimales\n");
     printf("1- Ingresar operacion \n2- Configuracion\n");
@@ -98,10 +102,12 @@ void process(char * operacion){
     case SUMA:
         printf("SUMA.");
         /* asm code */
+        restar(operandoA, operandoB);
         break;
     case RESTA:
         printf("RESTA.");
         /* asm code */
+        restar(operandoA, operandoB);
         break;
     }
 }
