@@ -6,6 +6,7 @@ La Calculadora debe permitir sumar y restar enteros y binarios, presentar el res
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "cdecl.h"
 
 extern int sumar(int x, int y);
@@ -28,16 +29,20 @@ Salida salida = DEC;
 Operacion op = SUMA;
 unsigned int eleccion;
 int32_t output;
+bool binarioIn = false, binarioOut = false;
 
 void process(char *operacion);
+long decimalToBinary(int decimalnum);
+int scanBin();
 
 int main(int argc, char const *argv[])
 {
     char *operacion = (char *)malloc(sizeof(char *));
 
 main:
-    printf("Este programa soporta operaciones con y entre numeros hexadecimales y decimales\n");
-    printf("1- Ingresar operacion \n2- Configuracion\n");
+    printf("Este programa soporta operaciones con y entre numeros binarios y decimales de no mas de 10 bits.\n");
+    printf("1- Ingresar operacion \n2- Ingreso de los numeros\n3- Muestra del resultado\n");
+    printf("Eleccion: ");
     scanf("%d", &eleccion);
 
     switch (eleccion)
@@ -49,10 +54,18 @@ main:
         process(operacion);
         break;
     case 2:
-    configuracion:
-        printf("Mostrar resultados en:\n 0- Hexadecimal\n 1- Decimal\n 2-Binario\n");
+        printf("Prefiere ingresar los numeros en:\n 0- Decimal\n 2- Binario\n");
+        printf("Eleccion: ");
         scanf("%d", &eleccion);
-
+        binarioIn = (eleccion == 2) ? true : false;
+        goto main;
+        break;
+    case 3:
+    configuracion:
+        printf("Mostrar resultados en:\n 1- Decimal\n 2-Binario\n");
+        printf("Eleccion: ");
+        scanf("%d", &eleccion);
+        binarioOut = (eleccion == 2) ? true : false;
         if (eleccion < 3)
         {
             salida = (Salida)eleccion;
@@ -103,16 +116,37 @@ void process(char *operacion)
     switch (op)
     {
     case SUMA:
-        printf("SUMA.");
+        printf("SUMA.\n");
         /* asm code */
         resultado = sumar(operandoA, operandoB);
+        if (binarioOut)
+            printf("El equivalente en binario es: %ld \n", decimalToBinary(resultado));
         printf("El resutaldo de la suma es: %d\n", resultado);
         break;
     case RESTA:
-        printf("RESTA.");
+        printf("RESTA.\n");
         /* asm code */
         resultado = restar(operandoA, operandoB);
+        if (binarioOut)
+            printf("El equivalente en binario es: %ld \n", decimalToBinary(resultado));
         printf("El resutaldo de la suma es: %d\n", resultado);
         break;
     }
+}
+
+/*https://beginnersbook.com/2017/09/c-program-to-convert-decimal-number-to-binary-number/ */
+
+long decimalToBinary(int decimalnum)
+{
+    long binarynum = 0;
+    int rem, temp = 1;
+
+    while (decimalnum != 0)
+    {
+        rem = decimalnum % 2;
+        decimalnum = decimalnum / 2;
+        binarynum = binarynum + rem * temp;
+        temp = temp * 10;
+    }
+    return binarynum;
 }
