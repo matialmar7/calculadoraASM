@@ -10,7 +10,7 @@ LDFLAGS := -m32
 CC		:= /usr/bin/gcc
 CXX		:= g++
 CXXFLAGS := -m32
-TARGETS := prime math first main.o
+TARGETS := sumar.o restar.o main.o
 DEP := driver.o asm_io.o
 
 .PHONY: clean
@@ -20,25 +20,14 @@ DEP := driver.o asm_io.o
 
 all: $(TARGETS) 
 
-prime: $(DEP)
+sumar.o:
+	$(AS) $(ASFLAGS) -d ELF_TYPE sumar.asm -o sumar.o
 
-math: $(DEP)
+restar.o:
+	$(AS) $(ASFLAGS) -d ELF_TYPE restar.asm -o restar.o
 
-first: $(DEP)
-
-asm_io.o: asm_io.asm
-	$(AS) $(ASFLAGS) -d ELF_TYPE asm_io.asm
-
-array1: driver.o array1c.o
-
-first.o: asm_io.inc
-
-main4.o: asm_io.inc
-
-prime.o: asm_io.inc 
-
-main.o: main.c first.asm
-	$(CC) $(CFLAGS) main.c asm_io.o first.o -o main.o
+main.o: main.c restar.asm sumar.asm
+	$(CC) $(CFLAGS) main.c sumar.o restar.o -o main.o
 
 clean :
 	rm -f *.o $(TARGETS)
