@@ -5,7 +5,7 @@
 
 AS		:= nasm
 ASFLAGS := -f elf
-CFLAGS	:= -m32
+CFLAGS	:= -m32 -g
 LDFLAGS := -m32
 CC		:= /usr/bin/gcc
 CXX		:= g++

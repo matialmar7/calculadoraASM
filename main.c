@@ -5,8 +5,12 @@ La Calculadora debe permitir sumar y restar enteros y binarios, presentar el res
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 
-#define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c"
+#define INT_MAX 65535
+#define INT_MIN -65536
+
+#define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c"
 #define BYTE_TO_BINARY(byte)  \
   (byte & 0x80 ? '1' : '0'), \
   (byte & 0x40 ? '1' : '0'), \
@@ -20,37 +24,63 @@ La Calculadora debe permitir sumar y restar enteros y binarios, presentar el res
 extern int _sumar(int A, int B);
 extern int _restar(int A, int B);
 
-int main(int argc, char const *argv[])
-{
-    int a, b;
-    unsigned int outconf;
-    printf("Calculadora all in one, suma y resta de numeros de 6 bits. Operaciones a realizar A + B y A - B.\n");
-    printf("Ingresa A: ");
-    scanf("%i", &a);
-    printf("Ingresa B: ");
-    scanf("%i", &b);
-    opcion:
-    printf("Especifique el formato de salida:\n \t0- Decimal  \n\t1- Hexadecimal \n\t2- Binario\nIngrese su opcion: ");
-    scanf("%i",&outconf);
+void printResult(int resultado, char op, char opt);
 
-    if(outconf>2) goto opcion;
+int main(int argc, char const *argv[]){
 
-    printf("Los numeros ingresados son A: %d, B: %d \n",a,b);
-    int suma = _sumar(a,b);
-    int resta = _restar(a,b);
-    switch (outconf)
-    {
-    case 0:
-        printf("A + B = %d y A - B = %d\n",suma,resta);
-        break;
-    case 1:
-        printf("A + B = %X y A - B = %X\n",suma,resta);
-    break;
-    case 2:
-        printf("A + B = "BYTE_TO_BINARY_PATTERN" y A - B = "BYTE_TO_BINARY_PATTERN"\n",BYTE_TO_BINARY(suma>>24),BYTE_TO_BINARY(suma>>16),BYTE_TO_BINARY(suma>>8),BYTE_TO_BINARY(suma),BYTE_TO_BINARY(resta>>24),BYTE_TO_BINARY(resta>>16),BYTE_TO_BINARY(resta>>8),BYTE_TO_BINARY(resta));
-        break;
+    if(argc > 5){
+        printf("incorrect expression");
+        return -1;
     }
 
+    errno = 0;
+
+    char printOpt = argv[1][0];
+
+    int a = strtol(argv[2],NULL,10);
+    if (errno != 0) {perror("Error while parsing A");exit(EXIT_FAILURE);}
+    if(a < INT_MIN || a > INT_MAX){perror("A must be an 16 bit signed int\n");exit(EXIT_FAILURE);}
+
+    int b = strtol(argv[4],NULL,10);
+    if (errno != 0) {perror("Error while parsing B");exit(EXIT_FAILURE);}
+    if(b < INT_MIN || b > INT_MAX) {perror("B must be an 16 bit signed int\n");exit(EXIT_FAILURE);}
+    
+    char op = argv[3][0];
+
+    int suma, resta;
+
+    switch (op)
+    {
+    case '+':
+        suma = _sumar(a,b);
+        printResult(suma, '+', printOpt);
+        break;
+    case '-':
+        resta = _restar(a,b);
+        printResult(resta, '-', printOpt);
+        break;
+    default:
+        printf("incorrect operation");
+        return -1;
+    }
 
     return 0;
+}
+
+void printResult(int resultado, char op,char opt){
+    switch (opt)
+    {
+        case 'd':
+            printf("A %c B = %d\n",op,resultado);
+            break;
+        case 'x':
+            printf("A %c B = %X\n",op,resultado);
+            break;
+        case 'b':
+            printf("A %c B = "BYTE_TO_BINARY_PATTERN"\n",op,BYTE_TO_BINARY(resultado>>8),BYTE_TO_BINARY(resultado));
+            break;
+        default:
+            printf("print error");
+            break;
+    }
 }
