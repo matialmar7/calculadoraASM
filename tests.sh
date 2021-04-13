@@ -22,3 +22,6 @@ assert_equals "$response" 0000000000000100
 
 response=$(./main.o x  11 - 1)
 assert_equals "$response" A
+
+response=$(./main.o h  11 - 1)
+assert_equals "$response" "print error"
