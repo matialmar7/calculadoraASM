@@ -25,3 +25,6 @@ assert_equals "$response" A
 
 response=$(./main.o h  11 - 1)
 assert_equals "$response" "print error"
+
+response=$(./main.o d  a + 2)
+assert_equals "$response" "print error"
