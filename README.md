@@ -5,8 +5,8 @@ Calculadora TP1 Sistemas de Computacion
 
 Calculadora que permite sumar numeros en binario, decimal o hexadecimal y su respectiva respuesta en el mismo lenguaje
 Es de facil utilizacion, tan simple como correr primero un *make*, para que el Makefile haga lo suyo y genere el programa y luego por ejemplo:
-  >> ./main.o c 3 + 3 
-  >> 
+  > ./main.o c 3 + 3 
+  
 Es una de las opciones permitidas.
 Esta calculadora suma como dijimos, binarios, decimales y hexadecimales, para su correcto uso, antes de la operacion a ejecutar se debe ingresar el caracter que determinara el lenguaje que se esta usando. Pueden ser:
   1. d -> decimal
