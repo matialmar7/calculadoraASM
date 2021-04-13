@@ -24,12 +24,12 @@ La Calculadora debe permitir sumar y restar enteros y binarios, presentar el res
 extern int _sumar(int A, int B);
 extern int _restar(int A, int B);
 
-void printResult(int resultado, char op, char opt);
+void printResult(int resultado, char opt);
 
 int main(int argc, char const *argv[]){
 
-    if(argc > 5){
-        printf("incorrect expression");
+    if(argc == 1 || argc > 5){
+        printf("incorrect expression.\nUse ./main.o <d,x,b> A <+,-> B\n");
         return -1;
     }
 
@@ -53,11 +53,11 @@ int main(int argc, char const *argv[]){
     {
     case '+':
         suma = _sumar(a,b);
-        printResult(suma, '+', printOpt);
+        printResult(suma, printOpt);
         break;
     case '-':
         resta = _restar(a,b);
-        printResult(resta, '-', printOpt);
+        printResult(resta, printOpt);
         break;
     default:
         printf("incorrect operation");
@@ -67,17 +67,17 @@ int main(int argc, char const *argv[]){
     return 0;
 }
 
-void printResult(int resultado, char op,char opt){
+void printResult(int resultado, char opt){
     switch (opt)
     {
         case 'd':
-            printf("A %c B = %d\n",op,resultado);
+            printf("%d\n",resultado);
             break;
         case 'x':
-            printf("A %c B = %X\n",op,resultado);
+            printf("%X\n",resultado);
             break;
         case 'b':
-            printf("A %c B = "BYTE_TO_BINARY_PATTERN"\n",op,BYTE_TO_BINARY(resultado>>8),BYTE_TO_BINARY(resultado));
+            printf(BYTE_TO_BINARY_PATTERN"\n",BYTE_TO_BINARY(resultado>>8),BYTE_TO_BINARY(resultado));
             break;
         default:
             printf("print error");
