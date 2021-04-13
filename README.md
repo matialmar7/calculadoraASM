@@ -1,7 +1,7 @@
 # calculadoraASM
 Calculadora TP1 Sistemas de Computacion
 
-##Funcionamiento :wrench:
+## Funcionamiento :wrench:
 
 Calculadora que permite sumar numeros en binario, decimal o hexadecimal y su respectiva respuesta en el mismo lenguaje
 Es de facil utilizacion, tan simple como correr primero un *make*, para que el Makefile haga lo suyo y genere el programa y luego por ejemplo:
@@ -14,7 +14,7 @@ Esta calculadora suma como dijimos, binarios, decimales y hexadecimales, para su
   3. x -> hexadecimal 
 
 
-##A tener en cuenta :mag:
+## A tener en cuenta :mag:
   1. *NO* se puede sumar un numero de distinto tipo
   2. *NO* se puede escribir letras al final, *SOLO* al comienzo, y las permitidas
         > x
