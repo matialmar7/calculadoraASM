@@ -80,7 +80,7 @@ void printResult(int resultado, char opt){
             printf(BYTE_TO_BINARY_PATTERN"\n",BYTE_TO_BINARY(resultado>>8),BYTE_TO_BINARY(resultado));
             break;
         default:
-            printf("print error");
+            printf("print error\n");
             break;
     }
 }
