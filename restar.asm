@@ -1,7 +1,7 @@
 segment .text
-        global  restar
+        global  _restar
 
-restar:
+_restar:
         enter   0,0             ; make room for sub on stack
 
         mov     eax, [ebp+8]    ; eax = A
