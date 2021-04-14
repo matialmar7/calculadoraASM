@@ -18,7 +18,9 @@ Esta calculadora suma como dijimos, binarios, decimales y hexadecimales, para su
   1. *NO* se puede sumar un numero de distinto tipo
   2. *NO* se puede escribir letras al final, *SOLO* al comienzo, y las permitidas
         > x
+        > 
         > b
+        > 
         > d
   3. Si no sigue el formato del ejemplo, le saldra algun mensaje de error.
   4. Si algo mas hiciste, te va a salir un error.
