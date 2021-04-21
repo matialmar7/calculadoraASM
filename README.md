@@ -3,7 +3,7 @@ Calculadora TP1 Sistemas de Computacion
 
 ## Funcionamiento :wrench:
 
-Calculadora que permite sumar numeros en binario, decimal o hexadecimal y su respectiva respuesta en el mismo lenguaje
+Calculadora que permite sumar numeros en decimal o hexadecimal y su respectiva respuesta en el mismo lenguaje
 Es de facil utilizacion, tan simple como correr primero un *make*, para que el Makefile haga lo suyo y genere el programa y luego por ejemplo:
   > ./main.o c 3 + 3 
   
