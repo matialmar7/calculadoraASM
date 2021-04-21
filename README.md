@@ -17,11 +17,12 @@ Esta calculadora suma como dijimos numeros decimales e imprime dependiendo la op
 ## A tener en cuenta :mag:
   1. *NO* se puede introducir otra cosa que no sean numeros
   2. *NO* intenten poner a sumar en binario, porque asumira que son decimales
-  3. *NO* se puede escribir letras al final, *SOLO* al comienzo, y las permitidas
+  4. *NO* se puede escribir letras al final, *SOLO* al comienzo, y las permitidas
         > x
         > 
         > b
         > 
         > d
-  4. Si no sigue el formato del ejemplo, le saldra algun mensaje de error.
-  5. Si algo mas hiciste, te va a salir un error.
+  5. Si no sigue el formato del ejemplo, le saldra algun mensaje de error.
+  6. Si algo mas hiciste, te va a salir un error.
+  7. Se pueden sumar con numeros que esten en el rango de _16 bit signed_  (-32,768 a 32,767), sino tirara error.
