@@ -7,8 +7,8 @@ La Calculadora debe permitir sumar y restar enteros y binarios, presentar el res
 #include <stdlib.h>
 #include <errno.h>
 
-#define INT_MAX 65535
-#define INT_MIN -65536
+#define INT_MAX 32767
+#define INT_MIN -32768
 
 #define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c"
 #define BYTE_TO_BINARY(byte)  \
