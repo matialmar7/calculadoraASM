@@ -3,12 +3,12 @@ Calculadora TP1 Sistemas de Computacion
 
 ## Funcionamiento :wrench:
 
-Calculadora que permite sumar numeros en decimal con la opcion de mostrarlos en hexadecimal, binario o decimal.
+Calculadora que permite sumar numeros en decimal o hexadecimal con la opcion de mostrarlos en hexadecimal, binario o decimal.
 Es de facil utilizacion, tan simple como correr primero un *make*, para que el Makefile haga lo suyo y genere el programa y luego por ejemplo:
   > ./main.o c 3 + 3 
   
 Es una de las opciones permitidas.
-Esta calculadora suma como dijimos numeros decimales e imprime dependiendo la opcion que ingresemos, para su correcto uso, antes de la operacion a ejecutar se debe ingresar el caracter que determinara el lenguaje que queremos que se muestre. Pueden ser:
+Esta calculadora suma como dijimos numeros decimales o hexadecimales e imprime dependiendo la opcion que ingresemos, para su correcto uso, antes de la operacion a ejecutar se debe ingresar el caracter que determinara el lenguaje que queremos que se muestre. Pueden ser:
   1. d -> decimal
   2. b -> binario
   3. x -> hexadecimal 
@@ -16,7 +16,10 @@ Esta calculadora suma como dijimos numeros decimales e imprime dependiendo la op
 
 ## A tener en cuenta :mag:
   1. *NO* se puede introducir otra cosa que no sean numeros
-  2. *NO* intenten poner a sumar en binario, porque asumira que son decimales
+  2. Si quiere intentar sumar en hexadecimal, tiene que hacerlo introduciendo *"0x"* antes, a modo de ejemplo:
+      > ./main.o x 0xf + oxc
+      > -> Retorna 1B
+  3. *NO* intenten poner a sumar en binario, porque asumira que son decimales
   4. *NO* se puede escribir letras al final, *SOLO* al comienzo, y las permitidas
         > x
         > 
